@@ -1,0 +1,79 @@
+<style>
+  h1{
+    text-align:center;
+    padding:20px;
+    font-size: 3rem;
+    margin-top:20px;
+  }
+  *{
+    font-size:20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  .headers{
+    display:flex;
+    flex-direction:row;
+    padding:20px;
+   width:100%;
+
+  }
+
+  #search-box{
+    width:50%;
+  }
+
+  #review-btn{
+    float:right;
+    margin-left:100px;
+    text-decoration:none;
+    background-color:green;
+    padding:10px;
+    color:white;
+    border-radius:5px;
+  }
+</style>
+
+
+
+{% extends "base.html" %}
+
+{%block content%}
+<div class="container">
+    <div class="headers">
+      {% comment %} <a>REVIEWIT</a> {% endcomment %}
+      <input placeholder="search" type="text" id="search-box" class="form-control"/>
+      <a href="{% url 'create_item' %}" id="review-btn">Add Review</a>
+    </div>
+
+    <h1>Review anything you can imagine</h1>
+    
+
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+            
+            <th scope="col">Experience</th>
+            <th scope="col">Relationship</th>
+            <th scope="col">Location</th>
+            <th scope="col">Stars</th>
+            <th scope="col">Date</th>
+        
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+      {% for i in items %}
+            <td>{{i.title}}</td>
+            <td>{{i.experience}}</td>
+            <td>{{i.relationship}}</td>
+            <td>{{i.location}}</td>
+            <td>{{i.stars}}</td>
+            <td>{{i.date_time}}</td>
+         
+          </tr>
+         {%endfor%}
+        </tbody>
+      </table>
+    </div>
+{%endblock%}
